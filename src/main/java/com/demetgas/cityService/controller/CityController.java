@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -15,8 +16,8 @@ public class CityController {
     private final List<City> cities;
 
     public CityController() {
-        City c1 = new City("06", "Gilan");
-        City c2 = new City("01", "Pristine");
+        City c1 = new City(new Date(),"06", "Gilan");
+        City c2 = new City(new Date(),"01", "Pristine");
 
         cities = Arrays.asList(c1, c2);
     }
@@ -40,7 +41,7 @@ public class CityController {
 
     @PostMapping
     public ResponseEntity<City> createCity(@RequestBody City newCity){
-        
+        cities.add(newCity);
     }
 
 }
