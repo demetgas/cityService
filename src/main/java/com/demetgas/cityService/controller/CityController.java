@@ -15,36 +15,33 @@ import java.util.List;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
+@RequestMapping("/cities")
 @AllArgsConstructor
 public class CityController {
 
     private final CityService cityService;
 
-    @GetMapping("/cities")
+    @GetMapping
     public ResponseEntity<List<City>> getCities() {
         return new ResponseEntity<>(cityService.getCities(), OK);
     }
 
-    @GetMapping("/cities/{id}")
-    public ResponseEntity<City> getCity(@PathVariable String id) {
-        return new ResponseEntity<>(getCityById(id), OK);
-    }
-    @GetMapping("/cities")
+    @GetMapping("/{id}")
     public ResponseEntity<City> getCity(@PathVariable String id) {
         return new ResponseEntity<>(getCityById(id), OK);
     }
 
-    @PostMapping("/cities")
+    @PostMapping
     public ResponseEntity<City> createCity(@RequestBody City newCity) {
         return new ResponseEntity<>(cityService.createCity(newCity), HttpStatus.CREATED);
     }
 
-    @PutMapping("/cities/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<City> updateCity(@PathVariable String id, @RequestBody City newCity) {
        cityService.updateCity(id,newCity);
         return new ResponseEntity<>(OK);
     }
-    @DeleteMapping("/cities/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCity(@PathVariable String id){
         cityService.deleteCity(id);
         return new ResponseEntity<>("You just deleted the city",OK);
