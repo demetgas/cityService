@@ -23,22 +23,18 @@ public class CityController {
 
     @GetMapping
     public ResponseEntity<List<City>> getCities() {
-
         return new ResponseEntity<>(cityService.getCities(), OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<City> getCity(@PathVariable String id) {
         City result = getCityById(id);
-
         return new ResponseEntity<>(result, OK);
     }
 
     @PostMapping
     public ResponseEntity<City> createCity(@RequestBody City newCity) {
-        newCity.setCreatedDate(new Date());
-        cities.add(newCity);
-        return new ResponseEntity<>(newCity, HttpStatus.CREATED);
+        return new ResponseEntity<>(cityService.createCity(newCity), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
