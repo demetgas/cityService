@@ -18,10 +18,10 @@ public class CityController {
     private final List<City> cities;
 
     public CityController() {
-        City c1 = new City("06","Gilan");
-        City c2 = new City("01","Pristine");
+        City c1 = new City("06", "Gilan");
+        City c2 = new City("01", "Pristine");
 
-        cities = Arrays.asList(c1,c2);
+        cities = Arrays.asList(c1, c2);
     }
 
 
@@ -32,12 +32,13 @@ public class CityController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<City> getCity(@PathVariable String id){
-        cities.stream()
-                .filter(city->city.getId().equals(id))
+    public ResponseEntity<City> getCity(@PathVariable String id) {
+        City result = cities.stream()
+                .filter(city -> city.getId().equals(id))
                 .findFirst()
-                .orElseThrow( () -> new RuntimeException("City not found!"));
+                .orElseThrow(() -> new RuntimeException("City not found!"));
 
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
 }
