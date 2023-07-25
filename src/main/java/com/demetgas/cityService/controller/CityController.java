@@ -38,10 +38,8 @@ public class CityController {
 
     @PutMapping("/{id}")
     public ResponseEntity<City> updateCity(@PathVariable String id, @RequestBody City newCity) {
-        City oldCity = getCityById(id);
-        oldCity.setName(newCity.getName());
-        oldCity.setCreatedDate(new Date());
-        return new ResponseEntity<>(oldCity,OK);
+       cityService.updateCity(id,newCity);
+        return new ResponseEntity<>(OK);
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCity(@PathVariable String id){

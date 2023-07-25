@@ -30,4 +30,9 @@ public class CityService {
         .orElseThrow(() -> new RuntimeException("City not found!"));
 
     }
+    public void updateCity(String id, City newCity){
+        City oldCity = getCityById(id);
+        oldCity.setName(newCity.getName());
+        cityRepository.save(oldCity);
+    }
 }
