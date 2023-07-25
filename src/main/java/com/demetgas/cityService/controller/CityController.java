@@ -56,6 +56,13 @@ public class CityController {
         oldCity.setCreatedDate(new Date());
         return new ResponseEntity<>(oldCity,OK);
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteCity(@PathVariable String id){
+        City city = getCityById(id);
+        cities.remove(city);
+        return new ResponseEntity<>("You just deleted the city",OK);
+    }
+
 
     private City getCityById(String id) {
         return cities.stream()
