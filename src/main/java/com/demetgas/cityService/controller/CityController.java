@@ -50,11 +50,11 @@ public class CityController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateCity(@PathVariable String id, @RequestBody City newCity) {
+    public ResponseEntity<City> updateCity(@PathVariable String id, @RequestBody City newCity) {
         City oldCity = getCityById(id);
         oldCity.setName(newCity.getName());
         oldCity.setCreatedDate(new Date());
-        return new ResponseEntity<>(OK);
+        return new ResponseEntity<>(oldCity,OK);
     }
 
     private City getCityById(String id) {
