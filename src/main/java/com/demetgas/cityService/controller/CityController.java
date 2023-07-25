@@ -1,6 +1,8 @@
 package com.demetgas.cityService.controller;
 
 import com.demetgas.cityService.model.City;
+import com.demetgas.cityService.service.CityService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,20 +16,10 @@ import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequestMapping("/cities")
+@AllArgsConstructor
 public class CityController {
 
-    private static final List<City> cities = new ArrayList<>();
-
-    public CityController() {
-        if (cities.isEmpty()) {
-            City c1 = new City(new Date(), "06", "Gilan");
-            City c2 = new City(new Date(), "01", "Pristine");
-
-            cities.add(c1);
-            cities.add(c2);
-        }
-
-    }
+    private final CityService cityService;
 
     @GetMapping
     public ResponseEntity<List<City>> getCities() {
