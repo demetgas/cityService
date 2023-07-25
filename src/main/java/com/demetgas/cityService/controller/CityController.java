@@ -28,8 +28,7 @@ public class CityController {
 
     @GetMapping("/{id}")
     public ResponseEntity<City> getCity(@PathVariable String id) {
-        City result = getCityById(id);
-        return new ResponseEntity<>(result, OK);
+        return new ResponseEntity<>(getCityById(id), OK);
     }
 
     @PostMapping
