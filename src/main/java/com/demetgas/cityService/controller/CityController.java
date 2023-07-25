@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -13,13 +14,14 @@ import java.util.List;
 @RequestMapping("/cities")
 public class CityController {
 
-    private final List<City> cities;
+    private static final List<City> cities = new ArrayList<>();
 
     public CityController() {
         City c1 = new City(new Date(), "06", "Gilan");
         City c2 = new City(new Date(), "01", "Pristine");
 
-        cities = Arrays.asList(c1, c2);
+        cities.add(c1);
+        cities.add(c2);
     }
 
 
