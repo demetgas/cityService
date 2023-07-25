@@ -23,5 +23,10 @@ public class CityController {
         return new ResponseEntity<>(cities, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<City> getCity(){
+        return null;
+    }
+
 }
 
