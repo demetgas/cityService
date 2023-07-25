@@ -13,7 +13,7 @@ import java.util.Date;
 public class City {
     @Id
     private String id;
-    private Date createdDate;
+    private Date createdDate = new Date();
     private String name;
 
 }
