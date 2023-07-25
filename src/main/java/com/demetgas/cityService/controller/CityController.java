@@ -51,10 +51,7 @@ public class CityController {
 
 
     private City getCityById(String id) {
-        return cities.stream()
-                .filter(city -> city.getId().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("City not found!"));
+        return cityService.getCityById(id);
     }
 
 }

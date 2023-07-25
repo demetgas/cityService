@@ -24,4 +24,10 @@ public class CityService {
     public void deleteCity(String id){
         cityRepository.deleteById(id);
     }
+
+    public City getCityById(String id){
+        return cityRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("City not found!"));
+
+    }
 }
