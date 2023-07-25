@@ -29,7 +29,6 @@ public class CityController {
 
     }
 
-
     @GetMapping
     public ResponseEntity<List<City>> getCities() {
 
@@ -51,14 +50,14 @@ public class CityController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateCity(@PathVariable String id, @RequestBody City newCity){
+    public ResponseEntity<Void> updateCity(@PathVariable String id, @RequestBody City newCity) {
         City oldCity = getCityById(id);
         oldCity.setName(newCity.getName());
         oldCity.setCreatedDate(new Date());
         return new ResponseEntity<>(OK);
     }
 
-    private City getCityById(String id){
+    private City getCityById(String id) {
         return cities.stream()
                 .filter(city -> city.getId().equals(id))
                 .findFirst()
