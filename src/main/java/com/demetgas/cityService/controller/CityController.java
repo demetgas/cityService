@@ -16,8 +16,8 @@ public class CityController {
     private final List<City> cities;
 
     public CityController() {
-        City c1 = new City(new Date(),"06", "Gilan");
-        City c2 = new City(new Date(),"01", "Pristine");
+        City c1 = new City(new Date(), "06", "Gilan");
+        City c2 = new City(new Date(), "01", "Pristine");
 
         cities = Arrays.asList(c1, c2);
     }
@@ -40,8 +40,10 @@ public class CityController {
     }
 
     @PostMapping
-    public ResponseEntity<City> createCity(@RequestBody City newCity){
+    public ResponseEntity<City> createCity(@RequestBody City newCity) {
+        newCity.setCreatedDate(new Date());
         cities.add(newCity);
+        return new ResponseEntity<>(newCity, HttpStatus.CREATED);
     }
 
 }
