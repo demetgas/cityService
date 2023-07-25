@@ -10,6 +10,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import static org.springframework.http.HttpStatus.OK;
+
 @RestController
 @RequestMapping("/cities")
 public class CityController {
@@ -31,14 +33,14 @@ public class CityController {
     @GetMapping
     public ResponseEntity<List<City>> getCities() {
 
-        return new ResponseEntity<>(cities, HttpStatus.OK);
+        return new ResponseEntity<>(cities, OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<City> getCity(@PathVariable String id) {
         City result = getCityById(id);
 
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<>(result, OK);
     }
 
     @PostMapping
@@ -50,7 +52,10 @@ public class CityController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Void> updateCity(@PathVariable String id, @RequestBody City newCity){
-
+        City oldCity = getCityById(id);
+        oldCity.setName(newCity.getName());
+        oldCity.setCreatedDate(new Date());
+        return new ResponseEntity<>(OK);
     }
 
     private City getCityById(String id){
