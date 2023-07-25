@@ -15,18 +15,29 @@ import java.util.List;
 @RequestMapping("/cities")
 public class CityController {
 
-    @GetMapping
-    public ResponseEntity<List<City>> getCities() {
+    private final List<City> cities;
+
+    public CityController() {
         City c1 = new City("06","Gilan");
         City c2 = new City("01","Pristine");
 
-        List<City> cities = Arrays.asList(c1,c2);
+        cities = Arrays.asList(c1,c2);
+    }
+
+
+    @GetMapping
+    public ResponseEntity<List<City>> getCities() {
+
         return new ResponseEntity<>(cities, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<City> getCity(@PathVariable String id){
-        return null;
+        cities.stream()
+                .filter(city->city.getId().equals(id))
+                .findFirst()
+                .orElseThrow( () -> new RuntimeException("City not found!"));
+
     }
 
 }
