@@ -36,10 +36,7 @@ public class CityController {
 
     @GetMapping("/{id}")
     public ResponseEntity<City> getCity(@PathVariable String id) {
-        City result = cities.stream()
-                .filter(city -> city.getId().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("City not found!"));
+        City result = getCityById(id);
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
@@ -49,6 +46,18 @@ public class CityController {
         newCity.setCreatedDate(new Date());
         cities.add(newCity);
         return new ResponseEntity<>(newCity, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> updateCity(@PathVariable String id, @RequestBody City newCity){
+
+    }
+
+    private City getCityById(String id){
+        return cities.stream()
+                .filter(city -> city.getId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("City not found!"));
     }
 
 }
