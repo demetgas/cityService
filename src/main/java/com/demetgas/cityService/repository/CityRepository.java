@@ -1,4 +1,6 @@
 package com.demetgas.cityService.repository;
 
-public interface CityRepository {
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+public interface CityRepository extends MongoRepository {
 }
